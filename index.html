@@ -830,14 +830,14 @@ footer {
         <h4>Paperback</h4>
         <p>The physical edition — for those who need to hold their stories</p>
         <span class="coming-soon-badge">Coming Soon</span><br/>
-        <div class="btn-dark" style="opacity:0.5;cursor:not-allowed;margin-top:12px;">Notify Me</div>
+        <div class="btn-dark notify-countdown" style="opacity:0.5;cursor:not-allowed;margin-top:12px;">Loading countdown...</div>
       </div>
       <div class="buy-card reveal" style="transition-delay:0.15s">
         <span class="buy-card-icon">✨</span>
         <h4>Digital Edition</h4>
         <p>Read her story anywhere, anytime — on any device</p>
         <span class="coming-soon-badge">Coming Soon</span><br/>
-        <div class="btn-dark" style="opacity:0.5;cursor:not-allowed;margin-top:12px;">Notify Me</div>
+        <div class="btn-dark notify-countdown" style="opacity:0.5;cursor:not-allowed;margin-top:12px;">Loading countdown...</div>
       </div>
     </div>
   </div>
@@ -929,6 +929,30 @@ function subscribeNewsletter() {
   msg.textContent = '✦ You\'re on the list. Letters coming soon.';
   document.getElementById('newsletterEmail').value = '';
 }
+
+function updateNotifyCountdown() {
+  const targets = document.querySelectorAll('.notify-countdown');
+  const launchDate = new Date('2026-07-01T00:00:00');
+  const now = new Date();
+  const diffMs = launchDate - now;
+
+  if (diffMs <= 0) {
+    targets.forEach(el => { el.textContent = 'Available now'; });
+    return;
+  }
+
+  const totalSeconds = Math.floor(diffMs / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  const label = `Launches in ${days}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+  targets.forEach(el => { el.textContent = label; });
+}
+
+updateNotifyCountdown();
+setInterval(updateNotifyCountdown, 1000);
 </script>
 </body>
 </html>
