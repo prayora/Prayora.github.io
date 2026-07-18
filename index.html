@@ -520,6 +520,12 @@ section { padding:100px 60px; }
   color:var(--ink-soft); margin-bottom:20px; line-height:1.5;
 }
 .buy-card-price { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold); display:block; margin-bottom:16px; }
+.buy-links {
+  display:flex; flex-direction:column; gap:10px; margin-top:16px;
+}
+.buy-links .btn-dark {
+  width:100%; padding:12px 16px; font-size:10px;
+}
 .coming-soon-badge {
   display:inline-block; background:var(--gold-pale); color:var(--rust);
   font-family:'Jost',sans-serif; font-size:9px; letter-spacing:2px;
@@ -828,21 +834,25 @@ footer {
   <div class="buy-inner">
     <span class="section-tag" style="text-align:center;display:block;">✦ Own It</span>
     <h2 class="section-title">Get Your <em>Copy</em></h2>
-    <p class="buy-body">The memoir is coming. Until then — follow the journey, stay close to the words, and be the first to know when she arrives.</p>
+    <p class="buy-body">The memoir is available now from leading booksellers in India. Choose the store that feels right and begin with the story.</p>
     <div class="buy-options">
       <div class="buy-card reveal">
-        <span class="buy-card-icon">📖</span>
-        <h4>Paperback</h4>
-        <p>The physical edition — for those who need to hold their stories</p>
-        <span class="coming-soon-badge">Coming Soon</span><br/>
-        <div class="btn-dark notify-countdown" style="opacity:0.5;cursor:not-allowed;margin-top:12px;">Loading countdown...</div>
+        <span class="buy-card-icon">📦</span>
+        <h4>Amazon</h4>
+        <p>Order your copy from Amazon India and begin with the story.</p>
+        <span class="coming-soon-badge">Available Now</span>
+        <div class="buy-links">
+          <a class="btn-dark" href="https://www.amazon.in/dp/9378210368" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+        </div>
       </div>
       <div class="buy-card reveal" style="transition-delay:0.15s">
-        <span class="buy-card-icon">✨</span>
-        <h4>Digital Edition</h4>
-        <p>Read her story anywhere, anytime — on any device</p>
-        <span class="coming-soon-badge">Coming Soon</span><br/>
-        <div class="btn-dark notify-countdown" style="opacity:0.5;cursor:not-allowed;margin-top:12px;">Loading countdown...</div>
+        <span class="buy-card-icon">🛍️</span>
+        <h4>Flipkart</h4>
+        <p>Pick up your copy from Flipkart and step into the memoir.</p>
+        <span class="coming-soon-badge">Available Now</span>
+        <div class="buy-links">
+          <a class="btn-dark" href="https://www.flipkart.com/unscripted-dreams-journey-towards-self-love-discovery/p/itm0a4f0cc89c433?pid=9789378210365" target="_blank" rel="noopener noreferrer">Buy on Flipkart</a>
+        </div>
       </div>
     </div>
   </div>
@@ -937,27 +947,10 @@ function subscribeNewsletter() {
 
 function updateNotifyCountdown() {
   const targets = document.querySelectorAll('.notify-countdown');
-  const launchDate = new Date('2026-07-25T00:00:00');
-  const now = new Date();
-  const diffMs = launchDate - now;
-
-  if (diffMs <= 0) {
-    targets.forEach(el => { el.textContent = 'Available now'; });
-    return;
-  }
-
-  const totalSeconds = Math.floor(diffMs / 1000);
-  const days = Math.floor(totalSeconds / 86400);
-  const hours = Math.floor((totalSeconds % 86400) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  const label = `Launches in ${days}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
-  targets.forEach(el => { el.textContent = label; });
+  targets.forEach(el => { el.textContent = 'Available now'; });
 }
 
 updateNotifyCountdown();
-setInterval(updateNotifyCountdown, 1000);
 </script>
 </body>
 </html>
